@@ -22,7 +22,6 @@
         </script>
         <script>
             document.addEventListener("DOMContentLoaded", function () {
-                // Initialize dark mode from localStorage or default to true
                 const darkMode = localStorage.getItem("darkMode") !== "false";
                 document.documentElement.classList.toggle("dark", darkMode);
                 updateTheme(darkMode);
@@ -36,9 +35,14 @@
             }
 
             function updateTheme(isDark) {
-                document.body.className = isDark
-                    ? "bg-purple-950 text-pink-100"
-                    : "bg-pink-50 text-purple-900";
+                const body = document.body;
+                if (isDark) {
+                    body.classList.remove("bg-slate-50", "text-slate-900");
+                    body.classList.add("bg-purple-950", "text-pink-100");
+                } else {
+                    body.classList.remove("bg-purple-950", "text-pink-100");
+                    body.classList.add("bg-slate-50", "text-slate-900");
+                }
             }
         </script>
     </head>
@@ -46,16 +50,18 @@
         <div class="min-h-screen">
             <!-- Header with gradient -->
             <div
-                class="bg-gradient-to-r from-purple-900 via-purple-800 to-pink-900"
+                class="bg-gradient-to-r from-purple-900 via-purple-800 to-pink-900 dark:from-purple-900 dark:via-purple-800 dark:to-pink-900 from-indigo-200 via-purple-200 to-pink-200"
             >
                 <header class="container mx-auto px-4 py-12">
                     <div class="flex justify-between items-center">
-                        <h1 class="text-5xl font-bold tracking-tight">
+                        <h1
+                            class="text-5xl font-bold tracking-tight dark:text-pink-100 text-slate-900"
+                        >
                             Cosmin Cretu
                         </h1>
                         <button
                             onclick="toggleDarkMode()"
-                            class="p-3 rounded-full bg-purple-800 text-pink-300 transition-all duration-300 hover:rotate-90"
+                            class="p-3 rounded-full bg-purple-800 dark:text-pink-300 text-slate-900 transition-all duration-300 hover:rotate-90 dark:bg-purple-800 bg-purple-200"
                         >
                             <i data-lucide="sun" class="dark:block hidden"></i>
                             <i data-lucide="moon" class="dark:hidden block"></i>
@@ -64,14 +70,14 @@
                     <div class="mt-6 flex gap-6">
                         <a
                             href="mailto:cosmincretu0909@gmail.com"
-                            class="flex items-center gap-2 text-pink-300 hover:text-pink-400 transition-all duration-300"
+                            class="flex items-center gap-2 dark:text-pink-300 text-slate-700 hover:text-slate-900 dark:hover:text-pink-400 transition-all duration-300"
                         >
                             <i data-lucide="mail"></i>
                             <span>Email</span>
                         </a>
                         <a
                             href="https://github.com/cosmini0"
-                            class="flex items-center gap-2 text-pink-300 hover:text-pink-400 transition-all duration-300"
+                            class="flex items-center gap-2 dark:text-pink-300 text-slate-700 hover:text-slate-900 dark:hover:text-pink-400 transition-all duration-300"
                         >
                             <i data-lucide="github"></i>
                             <span>GitHub</span>
@@ -81,7 +87,9 @@
             </div>
 
             <!-- Hero Section -->
-            <section class="py-20 relative overflow-hidden bg-purple-900">
+            <section
+                class="py-20 relative overflow-hidden dark:bg-purple-900 bg-slate-100"
+            >
                 <div class="container mx-auto px-4 relative z-10">
                     <h2 class="text-4xl font-bold mb-6 tracking-tight">
                         Computer Science Student & Developer
@@ -95,7 +103,7 @@
                     </p>
                 </div>
                 <div
-                    class="absolute inset-0 bg-gradient-to-r from-transparent via-pink-500/5 to-transparent animate-pulse"
+                    class="absolute inset-0 bg-gradient-to-r from-transparent dark:via-pink-500/5 via-purple-500/5 to-transparent animate-pulse"
                 ></div>
             </section>
 
@@ -107,7 +115,7 @@
                 <div class="grid md:grid-cols-2 gap-8">
                     <!-- Noted Project -->
                     <div
-                        class="group rounded-xl overflow-hidden transform transition-all duration-300 hover:-translate-y-2 bg-purple-800/50 hover:bg-purple-700/50 shadow-xl"
+                        class="group rounded-xl overflow-hidden transform transition-all duration-300 hover:-translate-y-2 dark:bg-purple-800/50 bg-slate-200/50 dark:hover:bg-purple-700/50 hover:bg-slate-300/50 shadow-xl"
                     >
                         <div class="relative overflow-hidden h-48">
                             <img
@@ -116,14 +124,14 @@
                                 class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
                             />
                             <div
-                                class="absolute inset-0 bg-gradient-to-t from-purple-900/90 to-transparent"
+                                class="absolute inset-0 bg-gradient-to-t dark:from-purple-900/90 from-slate-900/70 to-transparent"
                             ></div>
                         </div>
                         <div class="p-6">
                             <div class="flex items-center gap-3 mb-4">
                                 <i
                                     data-lucide="github"
-                                    class="text-pink-300"
+                                    class="dark:text-pink-300 text-slate-700"
                                 ></i>
                                 <h3 class="text-2xl font-bold">Noted</h3>
                             </div>
@@ -135,19 +143,19 @@
                             </p>
                             <div class="flex flex-wrap gap-2 mb-6">
                                 <span
-                                    class="px-3 py-1 rounded-full text-sm bg-purple-700 text-pink-200"
+                                    class="px-3 py-1 rounded-full text-sm dark:bg-purple-700 bg-slate-300 dark:text-pink-200 text-slate-900"
                                     >Python</span
                                 >
                                 <span
-                                    class="px-3 py-1 rounded-full text-sm bg-purple-700 text-pink-200"
+                                    class="px-3 py-1 rounded-full text-sm dark:bg-purple-700 bg-slate-300 dark:text-pink-200 text-slate-900"
                                     >Flask</span
                                 >
                                 <span
-                                    class="px-3 py-1 rounded-full text-sm bg-purple-700 text-pink-200"
+                                    class="px-3 py-1 rounded-full text-sm dark:bg-purple-700 bg-slate-300 dark:text-pink-200 text-slate-900"
                                     >HTML</span
                                 >
                                 <span
-                                    class="px-3 py-1 rounded-full text-sm bg-purple-700 text-pink-200"
+                                    class="px-3 py-1 rounded-full text-sm dark:bg-purple-700 bg-slate-300 dark:text-pink-200 text-slate-900"
                                     >CSS</span
                                 >
                             </div>
@@ -155,7 +163,7 @@
                                 href="https://github.com/cosmini0/Noted"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                class="flex items-center gap-2 text-pink-300 hover:text-pink-400 transition-colors duration-300"
+                                class="flex items-center gap-2 dark:text-pink-300 text-slate-700 dark:hover:text-pink-400 hover:text-slate-900 transition-colors duration-300"
                             >
                                 <i data-lucide="external-link"></i>
                                 <span>View Project</span>
@@ -165,7 +173,7 @@
 
                     <!-- Adventure Time Project -->
                     <div
-                        class="group rounded-xl overflow-hidden transform transition-all duration-300 hover:-translate-y-2 bg-purple-800/50 hover:bg-purple-700/50 shadow-xl"
+                        class="group rounded-xl overflow-hidden transform transition-all duration-300 hover:-translate-y-2 dark:bg-purple-800/50 bg-slate-200/50 dark:hover:bg-purple-700/50 hover:bg-slate-300/50 shadow-xl"
                     >
                         <div class="relative overflow-hidden h-48">
                             <img
@@ -174,14 +182,14 @@
                                 class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
                             />
                             <div
-                                class="absolute inset-0 bg-gradient-to-t from-purple-900/90 to-transparent"
+                                class="absolute inset-0 bg-gradient-to-t dark:from-purple-900/90 from-slate-900/70 to-transparent"
                             ></div>
                         </div>
                         <div class="p-6">
                             <div class="flex items-center gap-3 mb-4">
                                 <i
                                     data-lucide="gamepad-2"
-                                    class="text-pink-300"
+                                    class="dark:text-pink-300 text-slate-700"
                                 ></i>
                                 <h3 class="text-2xl font-bold">
                                     Adventure Time: A Messed Up Fangame
@@ -195,11 +203,11 @@
                             </p>
                             <div class="flex flex-wrap gap-2 mb-6">
                                 <span
-                                    class="px-3 py-1 rounded-full text-sm bg-purple-700 text-pink-200"
+                                    class="px-3 py-1 rounded-full text-sm dark:bg-purple-700 bg-slate-300 dark:text-pink-200 text-slate-900"
                                     >GML</span
                                 >
                                 <span
-                                    class="px-3 py-1 rounded-full text-sm bg-purple-700 text-pink-200"
+                                    class="px-3 py-1 rounded-full text-sm dark:bg-purple-700 bg-slate-300 dark:text-pink-200 text-slate-900"
                                     >GameMaker</span
                                 >
                             </div>
@@ -207,7 +215,7 @@
                                 href="https://lemoncup.itch.io/adventure-time-a-messed-up-fangame"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                class="flex items-center gap-2 text-pink-300 hover:text-pink-400 transition-colors duration-300"
+                                class="flex items-center gap-2 dark:text-pink-300 text-slate-700 dark:hover:text-pink-400 hover:text-slate-900 transition-colors duration-300"
                             >
                                 <i data-lucide="external-link"></i>
                                 <span>View Project</span>
@@ -218,63 +226,65 @@
             </section>
 
             <!-- Skills Section -->
-            <section class="py-20 relative overflow-hidden bg-purple-900/50">
+            <section
+                class="py-20 relative overflow-hidden dark:bg-purple-900/50 bg-slate-100"
+            >
                 <div class="container mx-auto px-4 relative z-10">
                     <h2 class="text-4xl font-bold mb-12 tracking-tight">
                         Skills
                     </h2>
                     <div class="flex flex-wrap gap-4">
                         <span
-                            class="px-6 py-3 rounded-lg text-lg font-medium transform transition-all duration-300 hover:scale-105 bg-purple-800/50 text-pink-200 hover:bg-purple-700/50 shadow-lg"
+                            class="px-6 py-3 rounded-lg text-lg font-medium transform transition-all duration-300 hover:scale-105 dark:bg-purple-800/50 bg-slate-200 dark:text-pink-200 text-slate-900 dark:hover:bg-purple-700/50 hover:bg-slate-300 shadow-lg"
                             >Python</span
                         >
                         <span
-                            class="px-6 py-3 rounded-lg text-lg font-medium transform transition-all duration-300 hover:scale-105 bg-purple-800/50 text-pink-200 hover:bg-purple-700/50 shadow-lg"
+                            class="px-6 py-3 rounded-lg text-lg font-medium transform transition-all duration-300 hover:scale-105 dark:bg-purple-800/50 bg-slate-200 dark:text-pink-200 text-slate-900 dark:hover:bg-purple-700/50 hover:bg-slate-300 shadow-lg"
                             >GML</span
                         >
                         <span
-                            class="px-6 py-3 rounded-lg text-lg font-medium transform transition-all duration-300 hover:scale-105 bg-purple-800/50 text-pink-200 hover:bg-purple-700/50 shadow-lg"
+                            class="px-6 py-3 rounded-lg text-lg font-medium transform transition-all duration-300 hover:scale-105 dark:bg-purple-800/50 bg-slate-200 dark:text-pink-200 text-slate-900 dark:hover:bg-purple-700/50 hover:bg-slate-300 shadow-lg"
                             >Flask</span
                         >
                         <span
-                            class="px-6 py-3 rounded-lg text-lg font-medium transform transition-all duration-300 hover:scale-105 bg-purple-800/50 text-pink-200 hover:bg-purple-700/50 shadow-lg"
+                            class="px-6 py-3 rounded-lg text-lg font-medium transform transition-all duration-300 hover:scale-105 dark:bg-purple-800/50 bg-slate-200 dark:text-pink-200 text-slate-900 dark:hover:bg-purple-700/50 hover:bg-slate-300 shadow-lg"
                             >JavaScript</span
                         >
                         <span
-                            class="px-6 py-3 rounded-lg text-lg font-medium transform transition-all duration-300 hover:scale-105 bg-purple-800/50 text-pink-200 hover:bg-purple-700/50 shadow-lg"
+                            class="px-6 py-3 rounded-lg text-lg font-medium transform transition-all duration-300 hover:scale-105 dark:bg-purple-800/50 bg-slate-200 dark:text-pink-200 text-slate-900 dark:hover:bg-purple-700/50 hover:bg-slate-300 shadow-lg"
                             >HTML</span
                         >
                         <span
-                            class="px-6 py-3 rounded-lg text-lg font-medium transform transition-all duration-300 hover:scale-105 bg-purple-800/50 text-pink-200 hover:bg-purple-700/50 shadow-lg"
+                            class="px-6 py-3 rounded-lg text-lg font-medium transform transition-all duration-300 hover:scale-105 dark:bg-purple-800/50 bg-slate-200 dark:text-pink-200 text-slate-900 dark:hover:bg-purple-700/50 hover:bg-slate-300 shadow-lg"
                             >CSS</span
                         >
                         <span
-                            class="px-6 py-3 rounded-lg text-lg font-medium transform transition-all duration-300 hover:scale-105 bg-purple-800/50 text-pink-200 hover:bg-purple-700/50 shadow-lg"
+                            class="px-6 py-3 rounded-lg text-lg font-medium transform transition-all duration-300 hover:scale-105 dark:bg-purple-800/50 bg-slate-200 dark:text-pink-200 text-slate-900 dark:hover:bg-purple-700/50 hover:bg-slate-300 shadow-lg"
                             >REST APIs</span
                         >
                         <span
-                            class="px-6 py-3 rounded-lg text-lg font-medium transform transition-all duration-300 hover:scale-105 bg-purple-800/50 text-pink-200 hover:bg-purple-700/50 shadow-lg"
+                            class="px-6 py-3 rounded-lg text-lg font-medium transform transition-all duration-300 hover:scale-105 dark:bg-purple-800/50 bg-slate-200 dark:text-pink-200 text-slate-900 dark:hover:bg-purple-700/50 hover:bg-slate-300 shadow-lg"
                             >Responsive Design</span
                         >
                         <span
-                            class="px-6 py-3 rounded-lg text-lg font-medium transform transition-all duration-300 hover:scale-105 bg-purple-800/50 text-pink-200 hover:bg-purple-700/50 shadow-lg"
+                            class="px-6 py-3 rounded-lg text-lg font-medium transform transition-all duration-300 hover:scale-105 dark:bg-purple-800/50 bg-slate-200 dark:text-pink-200 text-slate-900 dark:hover:bg-purple-700/50 hover:bg-slate-300 shadow-lg"
                             >Game Development</span
                         >
                         <span
-                            class="px-6 py-3 rounded-lg text-lg font-medium transform transition-all duration-300 hover:scale-105 bg-purple-800/50 text-pink-200 hover:bg-purple-700/50 shadow-lg"
+                            class="px-6 py-3 rounded-lg text-lg font-medium transform transition-all duration-300 hover:scale-105 dark:bg-purple-800/50 bg-slate-200 dark:text-pink-200 text-slate-900 dark:hover:bg-purple-700/50 hover:bg-slate-300 shadow-lg"
                             >Web Security</span
                         >
                     </div>
                 </div>
                 <div
-                    class="absolute inset-0 bg-gradient-to-br from-transparent via-pink-500/5 to-transparent animate-pulse"
+                    class="absolute inset-0 bg-gradient-to-br from-transparent dark:via-pink-500/5 via-purple-500/5 to-transparent animate-pulse"
                 ></div>
             </section>
 
             <!-- Footer -->
-            <footer class="py-8 bg-purple-950">
+            <footer class="py-8 dark:bg-purple-950 bg-slate-50">
                 <div class="container mx-auto px-4 text-center">
-                    <p class="text-sm text-pink-300/60">
+                    <p class="text-sm dark:text-pink-300/60 text-slate-500">
                         © 2024 Cosmin Cretu. All rights reserved.
                     </p>
                 </div>
