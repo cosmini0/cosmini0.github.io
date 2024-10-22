@@ -22,8 +22,18 @@
             };
         </script>
         <script>
+            // Simple dark mode toggle
+            document.addEventListener("DOMContentLoaded", function () {
+                const darkMode = localStorage.getItem("darkMode") === "true";
+                document.documentElement.classList.toggle("dark", darkMode);
+            });
+
             function toggleDarkMode() {
                 document.documentElement.classList.toggle("dark");
+                localStorage.setItem(
+                    "darkMode",
+                    document.documentElement.classList.contains("dark"),
+                );
             }
         </script>
     </head>
